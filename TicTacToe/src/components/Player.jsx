@@ -1,5 +1,10 @@
 import { useState } from "react";
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({
+  initialName,
+  symbol,
+  isActive,
+  onChangeName,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setplayerName] = useState((initialName = "playerName"));
   function handleEditClick() {
@@ -9,6 +14,9 @@ export default function Player({ initialName, symbol, isActive }) {
     setIsEditing((editing) => !editing);
     // setIsEditing(true);
     // console.log(isEditing);
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
   console.log(isEditing, "outside");
 
