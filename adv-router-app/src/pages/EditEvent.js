@@ -7,7 +7,7 @@ const EditEventPage = ({ method, event }) => {
     <>
       <h1>EditEventPage</h1>
 
-      <EventForm event={data.event} />
+      <EventForm method="PATCH" event={data.event} />
     </>
   );
 };
