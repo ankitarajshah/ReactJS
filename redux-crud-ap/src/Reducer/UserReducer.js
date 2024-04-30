@@ -22,19 +22,31 @@ const userSlice = createSlice({
   initialState: userList,
   reducers: {
     addUser: (state, action) => {
-      console.log("call2");
-      console.log(action, "action");
+      // console.log(state, "adduser");
+      // console.log("call2");
+      // console.log(action, "action");
       state.push(action.payload);
       // console.log(action);
     },
     updateUser: (state, action) => {
+      // console.log(state, "updateuser");
+      console.log("call3");
+      console.log(action, "action");
       const { id, name, email } = action.payload;
-      const updatingUser = state.find((user) => user.id === id);
-      console.log(updatingUser, "update");
-      if (updatingUser) {
-        updatingUser.name = name;
-        updatingUser.email = email;
-      }
+      const a = state;
+      const updatingUser = a.map((user) => {
+        console.log(user, "usr");
+        if (user.id === id) {
+          return {
+            ...user,
+            name: name,
+            email: email,
+          };
+        }
+        return user;
+      });
+      console.log(updatingUser, "user");
+      state = [...updatingUser];
     },
     deleteUser: (state, action) => {
       const { id } = action.payload;

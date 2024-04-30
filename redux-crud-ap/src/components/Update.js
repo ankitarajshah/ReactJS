@@ -9,23 +9,26 @@ export default function Update() {
   const { id } = useParams();
 
   const users = useSelector((state) => state.users);
-  console.log(users, "update");
+  console.log(users, "current user update");
 
   const existingUser = users.filter((user) => user.id === parseInt(id));
-  console.log(existingUser);
+  console.log(existingUser, "updateexisting user");
 
-  const { name, email } = existingUser[0];
+  const { name: initialName, email: initialEmail } = existingUser[0];
 
-  const [uname, setuName] = useState(name);
-  const [uemail, setuEmail] = useState(email);
-  console.log(uname);
+  const [name, setName] = useState(initialName);
+  const [email, setEmail] = useState(initialEmail);
+  console.log(name);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    dispatch(updateUser({ id: id, name: uname, email: uemail }));
+    // console.log("update action id", id);
+    // console.log(name, "upname");
+    // console.log(email, "upname");
+    dispatch(updateUser({ id: id, name: name, email: email }));
     navigate("/home");
   };
 
@@ -42,8 +45,8 @@ export default function Update() {
                 name="name"
                 className="form-control"
                 placeholder="Full Name"
-                value={uname}
-                onChange={(e) => setuName(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="mb-3">
@@ -55,8 +58,8 @@ export default function Update() {
                 className="form-control"
                 id="exampleFormControlInput1"
                 placeholder="name@example.com"
-                value={uemail}
-                onChange={(e) => setuEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <button
