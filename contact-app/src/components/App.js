@@ -1,54 +1,70 @@
+// App.js
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import AddContact from "./AddContact";
 import ContactList from "./ContactList";
-import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <ContactList />,
-  },
-  {
-    path: "/add",
-    element: <AddContact />,
-  },
-]);
-
+import ContactDetails from "./ContactDetails";
 function App() {
   const LOCAL_STORAGE_KEY = "contacts";
   const [contacts, setContacts] = useState([]);
 
-  const addContactHandler = (contact) => {
-    // console.log(contact);
-    setContacts([...contacts, { id: uuid(), ...contact }]);
-  };
-
-  const removeContactHandler = (id) => {
-    const newContactList = contacts.filter((contact) => {
-      return contact.id !== id;
-    });
-    setContacts(newContactList);
-  };
-
   useEffect(() => {
-    console.log("callueseff");
-    const retrieveContacts = JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE_KEY)
-    );
-    console.log("contacts changed ", retrieveContacts);
-    if (retrieveContacts) setContacts(retrieveContacts);
+    // Retrieve contacts from local storage
+    try {
+      const retrieveContacts = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_KEY)
+      );
+      if (retrieveContacts) setContacts(retrieveContacts);
+    } catch (error) {
+      console.error("Error retrieving contacts from local storage:", error);
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
+    // Store contacts in local storage
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
+    } catch (error) {
+      console.error("Error storing contacts in local storage:", error);
+    }
   }, [contacts]);
+
+  const addContactHandler = (contact) => {
+    setContacts([...contacts, { id: uuid(), ...contact }]);
+  };
+  const removeContactHandler = (id) => {
+    const newContactList = contacts.filter((contact) => contact.id !== id);
+    setContacts(newContactList);
+  };
+
   return (
     <>
       <h1 className="text-center text-4xl">Contact Manager</h1>
-      <RouterProvider router={router} />
-      {/* <AddContact addContactHandler={addContactHandler} />
-        <ContactList contacts={contacts} getContactId={removeContactHandler} /> */}
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            exact
+            element={
+              <ContactList
+                contacts={contacts}
+                removeContact={removeContactHandler}
+              />
+            }
+          />
+          <Route
+            path="/add"
+            element={<AddContact addContactHandler={addContactHandler} />}
+          />
+          <Route
+            path="/contact/:id"
+            element={<ContactDetails contacts={contacts} />}
+          />
+        </Routes>
+      </Router>
     </>
   );
 }

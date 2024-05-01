@@ -2,36 +2,32 @@ import React from "react";
 import ContactCard from "./ContactCard";
 import { Link } from "react-router-dom";
 
-const ContactList = (props) => {
-  console.log(props);
-  const deleteContactHandler = (id) => {
-    props.getContactId(id);
-  };
-  const contacts = [
-    {
-      id: "1",
-      name: "Ankia",
-      email: "a@gmail",
-    },
-  ];
-  const renderContactList = contacts.map((contact) => {
-    return (
-      <ContactCard contact={contact} clickHandler={deleteContactHandler} />
-    );
-  });
+const ContactList = ({ contacts, removeContact }) => {
   return (
     <>
-      <h1 className="text-center text-2xl">Contact List</h1>
-      <div className="flex justify-center">
+      <h2 className="text-center text-xl">Contact List</h2>
+      <div className="flex justify-center mb-4">
         <Link to="/add">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             Add Contact
           </button>
         </Link>
       </div>
-
-      <div>{renderContactList}</div>
+      {contacts.length === 0 ? (
+        <div className="text-center text-gray-500">No contacts to display</div>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {contacts.map((contact) => (
+            <ContactCard
+              key={contact.id}
+              contact={contact}
+              removeContact={removeContact}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };
+
 export default ContactList;
