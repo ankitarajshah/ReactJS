@@ -2,15 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import contactImage from "../images/contact.png";
 
-export default function ContactCard({ contact, removeContact }) {
+export default function ContactCard({ contact, removeContact, editContact }) {
   const { id, name, email } = contact;
-
+  const handleEdit = () => {
+    editContact(contact);
+  };
   const handleDelete = () => {
     removeContact(id);
   };
 
   return (
     <div className="flex flex-row rounded-lg">
+      <h1>Card</h1>
       <img className="h-20 w-20 rounded-lg" src={contactImage} alt="Contact" />
       <div className="flex flex-row justify-start p-6">
         <div className="flex-1 min-w-0 ">
@@ -28,6 +31,16 @@ export default function ContactCard({ contact, removeContact }) {
             {email}
           </div>
         </div>
+      </div>
+      <div className="flex flex-row justify-start p-6">
+        <Link
+          to={{
+            pathname: `/edit`,
+            state: { contact },
+          }}
+        >
+          <button onClick={handleEdit}>Edit</button>
+        </Link>
       </div>
       <div className="flex flex-row justify-start p-6">
         <button onClick={handleDelete}>Delete</button>

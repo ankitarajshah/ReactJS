@@ -2,7 +2,7 @@ import React from "react";
 import ContactCard from "./ContactCard";
 import { Link } from "react-router-dom";
 
-const ContactList = ({ contacts, removeContact }) => {
+const ContactList = ({ contacts, removeContact, editContact }) => {
   return (
     <>
       <h2 className="text-center text-xl">Contact List</h2>
@@ -22,6 +22,7 @@ const ContactList = ({ contacts, removeContact }) => {
               key={contact.id}
               contact={contact}
               removeContact={removeContact}
+              editContact={() => editContact(contact.id)}
             />
           ))}
         </div>
