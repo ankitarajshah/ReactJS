@@ -1,12 +1,1 @@
-{
-  "events": [
-    {
-      "title": "A new event",
-      "image": "https://cdn.muenchen-p.de/fl_progressive,q_65/.imaging/stk/responsive/teaser300/dms/va-2016/muenchner-christkindlmarkt/christkindlmarkt-marienplat-logo-hp/document/christkindlmarkt-marienplat-logo-hp.jpg",
-      "date": "2022-10-01",
-      "description": "Some awesome event!",
-      "id": "2a42fcc4-ea21-4bdd-abf6-c40006dc66a9"
-    }
-  ],
-  "users": []
-}
+{"events":[{"title":"aa","image":"https://buffer.com/library/content/images/2023/10/free-images.jpg","date":"2024-05-03","description":"aaaa","id":"42a76fc7-104c-4080-a98f-cb309d0e452c"},{"title":"a","image":"https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/Germany/Blog_images/mann-ho%CC%88rt-podcast-vertrieb-2-1.jpg?width=610&height=406&name=mann-ho%CC%88rt-podcast-vertrieb-2-1.jpg","date":"2024-05-03","description":"aa","id":"effefd9d-f023-4aba-a9dd-3ff46973e606"}],"users":[{"email":"a@gmail.com","password":"$2a$12$W9pgtYAqJPqQRuxLdZKGTeWos9fJVmPMP899k.4TFmubUnqWOevi2","id":"30cd7505-fcc0-482c-a25f-fdeca8c350dc"},{"email":"x@gmail.com","password":"$2a$12$CFI9pDOQfSwAOpF1duER.uHOO1e5MxR71OAwaRkm9fJHdaIShxu1y","id":"e2841b85-dc06-4704-ae40-0714e17860a9"}]}
