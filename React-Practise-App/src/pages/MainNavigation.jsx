@@ -1,8 +1,9 @@
 import React from "react";
 
-import { NavLink, Form } from "react-router-dom";
+import { Form, Link, useRouteLoaderData } from "react-router-dom";
 
 const MainNavigation = () => {
+  const token = useRouteLoaderData();
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,19 +25,20 @@ const MainNavigation = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/">
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link active" to="/login?mode=login">
+                <Link className="nav-link active" to="/login">
                   Login
-                </NavLink>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <Form action="/logout" className="nav-link active">
-                  Logout
+                <Link className="nav-link active" to="/dashboard">
+                  Dashboard
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Form action="/logout" method="post">
+                  <button>Logout</button>
                 </Form>
               </li>
             </ul>

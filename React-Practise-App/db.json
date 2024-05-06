@@ -1,22 +1,13 @@
 {
   "users": [
     {
-      "id": "cd83",
+      "id": "ankita",
       "fname": "ankita",
       "lname": "shah",
-      "email": "anki1@gmail.com",
-      "mobile": "1111",
-      "password": "111111",
-      "cpassword": "111111"
-    },
-    {
-      "id": "92ca",
-      "fname": "ankita",
-      "lname": "shah",
-      "email": "anki1@gmail.com",
-      "mobile": "1111",
-      "password": "111111",
-      "cpassword": "111111"
+      "email": "a@gmail.com",
+      "phone": "",
+      "password": "123456",
+      "mobile": "1234567890"
     }
   ]
 }
