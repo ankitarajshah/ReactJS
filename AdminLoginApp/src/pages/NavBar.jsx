@@ -1,16 +1,13 @@
 import React from "react";
-
-import { Form, Link, useRouteLoaderData } from "react-router-dom";
-
-const MainNavigation = () => {
-  const token = useRouteLoaderData();
+import { Link } from "react-router-dom";
+const NavBar = ({ Current_user }) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
-            Login App
-          </a>
+          <Link className="navbar-brand" to="/">
+            App
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -25,27 +22,30 @@ const MainNavigation = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" to="/login">
-                  Login
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/admin"
+                >
+                  Admin
                 </Link>
               </li>
-
               <li className="nav-item">
-                <Link className="nav-link active" to="/dashboard">
-                  Dashboard
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/user"
+                >
+                  User
                 </Link>
-              </li>
-
-              <li className="nav-item">
-                <Form action="/logout" method="post">
-                  <button>Logout</button>
-                </Form>
               </li>
             </ul>
+            {Current_user}
           </div>
         </div>
       </nav>
     </>
   );
 };
-export default MainNavigation;
+
+export default NavBar;

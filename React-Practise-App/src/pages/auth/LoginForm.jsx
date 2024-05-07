@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import axios from "axios";
 
-import { generateToken } from "./TokenLoader";
+import { generateToken } from "../../util/TokenLoader";
 const LoginForm = () => {
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState(true);
@@ -110,9 +110,9 @@ const LoginForm = () => {
                       Submit
                     </button>
                     |
-                    <Link to={"/dashboard"} className="btn btn-primary">
+                    {/* <Link to={"/dashboard"} className="btn btn-primary">
                       Login
-                    </Link>
+                    </Link> */}
                     <Link to={"/register"} className="btn btn-danger">
                       Create new User
                     </Link>

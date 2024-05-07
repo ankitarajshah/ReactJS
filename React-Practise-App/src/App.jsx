@@ -1,14 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "./pages/RootLayout";
-import LoginForm from "./pages/LoginForm";
+// import RootLayout from "./components/common/Home";
+import LoginForm from "./pages/auth/LoginForm";
 import Dashboard from "./pages/Dashboard";
-import Register from "./pages/Register";
-import { action as logoutAction } from "./pages/Logout";
-import { checkLoginLoader, tokenLoader } from "./pages/TokenLoader";
+import Register from "./pages/auth/Register";
+import { action as logoutAction } from "./pages/auth/Logout";
+import { checkLoginLoader, tokenLoader } from "./util/TokenLoader";
+import Protected from "./components/Protected";
+import Home from "./components/common/Home";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: <Protected Comp={Home} />,
     loader: tokenLoader,
     id: "root",
     children: [
