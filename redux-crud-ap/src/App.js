@@ -6,9 +6,8 @@ import Update from "./components/Update";
 function App() {
   return (
     <>
-      <h1>CrudApp</h1>
-
       <BrowserRouter>
+        <h1>CrudApp</h1>
         <Routes>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/create" element={<Create />}></Route>

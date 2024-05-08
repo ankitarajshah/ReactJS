@@ -10,6 +10,6 @@ export function generateToken() {
 export function checkLoginLoader() {
   const token = generateToken();
   if (!token) {
-    return redirect("login");
+    return redirect("/");
   }
 }

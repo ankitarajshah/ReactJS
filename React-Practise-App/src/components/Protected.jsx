@@ -1,21 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { generateToken } from "../util/TokenLoader";
 import { useEffect } from "react";
-const Protected = (props) => {
-  const { Comp } = props;
+import { generateToken } from "../util/TokenLoader";
+
+const Protected = ({ Comp }) => {
   const navigate = useNavigate();
+  useEffect(() => {
+    const token = generateToken();
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
-  const token = generateToken();
-  if (!token) {
-    navigate("login");
-  }
-
-  return (
-    <>
-      <Comp />
-      {/* token ? <Outlet /> : <Navigate to="/login" />; */}
-    </>
-  );
+  return <Comp />;
 };
-
 export default Protected;

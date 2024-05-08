@@ -1,10 +1,14 @@
-import { redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import axios from "axios";
 
 import { generateToken } from "../../util/TokenLoader";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const LoginForm = () => {
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState(true);
@@ -13,7 +17,7 @@ const LoginForm = () => {
     id: "",
     password: "",
   });
-  const navigateTo = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,11 +50,10 @@ const LoginForm = () => {
         if (user) {
           const token = generateToken();
           localStorage.setItem("token", token);
-          alert("login");
-          // redirect("/dashboard");
-          navigateTo("/dashboard");
+          alert("Login successful");
+          navigate("/home");
         } else {
-          alert("Login fail");
+          alert("Login failed");
         }
       } catch (error) {
         console.error("Login fail:", error);
