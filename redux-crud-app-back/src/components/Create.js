@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../Reducer/UserReducer";
+import axios from "axios";
 export default function Create() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,19 +15,33 @@ export default function Create() {
   const users = useSelector((state) => state.users);
   console.log(users, "adddedd");
 
-  const handleSubmit = (e) => {
-    console.log("call1");
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(
-      addUser({
+    await axios.post(
+      "http://localhost:3000/admin/add-product",
+      {
         id: users[users.length - 1].id + 1,
         name: name,
         email: email,
-      })
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
-    setName("");
-    setEmail("");
-    navigate("/home");
+    // console.log("call1");
+    // e.preventDefault();
+    // dispatch(
+    //   addUser({
+    //     id: users[users.length - 1].id + 1,
+    //     name: name,
+    //     email: email,
+    //   })
+    // );
+    // setName("");
+    // setEmail("");
+    // navigate("/home");
   };
   return (
     <>
